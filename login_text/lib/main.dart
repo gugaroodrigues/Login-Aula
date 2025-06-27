@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MyApp());
 }
 
-/// Widget raiz da aplicação
+/// Widget principal do app
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login Simples',
+      debugShowCheckedModeBanner: false,
+      title: 'Login',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/// Tela de Login
+/// Tela de Login com fundo gradiente azul
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -31,16 +30,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Controladores para os campos de texto
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
 
-  // Função que simula o login
   void _fazerLogin() {
     final email = _emailController.text;
     final senha = _senhaController.text;
 
-    // Simula a verificação (em um caso real, você consultaria um banco ou API)
     if (email == "teste@teste.com" && senha == "1234") {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login bem-sucedido!')),
@@ -55,45 +51,94 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0), // Espaçamento interno
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centraliza verticalmente
-          children: [
-            // Campo de email
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 16), // Espaço entre os campos
+      // Remove a AppBar para um visual mais limpo
+      body: Container(
+        decoration: const BoxDecoration(
+          // Gradiente azul no fundo da tela
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF2196F3), // Azul claro
+              Color(0xFF0D47A1),
+              Color(0xFF0D47A1),
+              Color(0xFF0D47A1), // Azul escuro
+            ],
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo ou título
+                const Text(
+                  'Bem-vindo',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 40),
 
-            // Campo de senha
-            TextField(
-              controller: _senhaController,
-              decoration: const InputDecoration(
-                labelText: 'Senha',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true, // Oculta a senha
-            ),
-            const SizedBox(height: 24),
+                // Campo de email
+                TextField(
+                  controller: _emailController,
+                  decoration: _inputDecoration('Email'),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 16),
 
-            // Botão de login
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _fazerLogin,
-                child: const Text('Entrar'),
-              ),
+                // Campo de senha
+                TextField(
+                  controller: _senhaController,
+                  decoration: _inputDecoration('Senha'),
+                  obscureText: true,
+                ),
+                const SizedBox(height: 24),
+
+                // Botão de login
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _fazerLogin,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.blueAccent,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
+
+  /// Estilo comum para os campos de texto
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(color: Colors.white),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.2),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(12),
+      ),
+    );
+  }
 }
+

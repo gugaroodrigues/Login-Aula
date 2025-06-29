@@ -6,6 +6,9 @@ class BuildTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final bool obscureText;
+  final String? Function (String?)? validator;
+  final TextInputType? keyboardType;
+
 
   const BuildTextField({
     super.key,
@@ -13,6 +16,8 @@ class BuildTextField extends StatelessWidget {
     required this.hint,
     required this.icon,
     this.obscureText = false, // Define um valor padrão para obscureText
+    this.validator,
+    this.keyboardType
   });
 
   @override
@@ -22,10 +27,12 @@ class BuildTextField extends StatelessWidget {
         color: Colors.white.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         obscureText: obscureText,
         style: const TextStyle(color: Colors.white),
+        keyboardType: keyboardType,
+        validator: validator,
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.white70),
           hintText: hint,

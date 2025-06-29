@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/forms_widget.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -69,6 +68,7 @@ class RegistrationPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // Lógica para registrar o usuário
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Botão de cadastro clicado!')),
                       );

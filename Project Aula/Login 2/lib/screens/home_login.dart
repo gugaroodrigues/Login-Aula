@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:login_2/screens/registration_page.dart';
 import 'package:login_2/widgets/forms_widget.dart';
+import 'package:login_2/widgets/gradient_background.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -31,18 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1C1B2D),
-              Color(0xFF0C0B15),
-            ],
-          ),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+      body: GradientBackground( // Usando o novo widget aqui
         child: Center(
           child: SingleChildScrollView(
             child: Column(

@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fl_chart: ^0.65.0  # Adicione esta linha
+  shared_preferences: ^2.2.2 # Adicione esta linha
 
 dev_dependencies:
   flutter_test:

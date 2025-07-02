@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:login_2/screens/registration_page.dart';
 import 'package:login_2/widgets/forms_widget.dart';
 import 'package:login_2/widgets/gradient_background.dart';
+
+import 'home_screen.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -19,9 +21,14 @@ class _LoginPageState extends State<LoginPage> {
     final senha = _senhaController.text;
 
     if (email == "teste@teste.com" && senha == "1234") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login bem-sucedido!')),
+      print("Login bem sucedido ");
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(
+          builder:(context) => const HomeScreen(),
+          )
       );
+
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Email ou senha inválidos')),
@@ -32,7 +39,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GradientBackground( // Usando o novo widget aqui
+      body: GradientBackground(
+        title: 'login',
         child: Center(
           child: SingleChildScrollView(
             child: Column(

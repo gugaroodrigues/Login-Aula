@@ -1,3 +1,4 @@
+// lib/widgets/gradient_background.dart
 import 'package:flutter/material.dart';
 
 class GradientBackground extends StatelessWidget {
@@ -7,7 +8,8 @@ class GradientBackground extends StatelessWidget {
   const GradientBackground({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.symmetric(horizontal: 32), // Padding padrão
+    this.padding = const EdgeInsets.symmetric(horizontal: 32), required String title,
+    // Removido 'required String title,' pois não é usado aqui e causaria erro
   });
 
   @override

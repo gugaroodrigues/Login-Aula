@@ -8,9 +8,18 @@ class RegistrationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro'),
+        title: const Text(
+          'Registro',
+          style: TextStyle(color: Colors.white), // Título da tela
+        ),
         backgroundColor: const Color(0xFF1C1B2D),
         foregroundColor: Colors.white, // Define a cor do ícone de voltar e do título
+        leading: IconButton( // Adiciona um botão de voltar personalizado
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context); // Volta para a tela anterior
+          },
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -95,4 +104,3 @@ class RegistrationPage extends StatelessWidget {
   }
 
 }
-
